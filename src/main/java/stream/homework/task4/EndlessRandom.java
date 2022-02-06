@@ -1,5 +1,6 @@
 package stream.homework.task4;
 
+import java.util.Random;
 import java.util.stream.Stream;
 
 public class EndlessRandom {
@@ -11,9 +12,15 @@ public class EndlessRandom {
         this.a = a;
         this.c = c;
         this.m = m;
+
     }
 
     public Stream<Long> generateRandom() {
-        return Stream.iterate(seed, seed -> (a * seed + c) % m);
+
+        final Random r = new Random();
+
+        int rNum = r.nextInt((int) seed);
+
+        return Stream.iterate(seed, seed -> ((a * rNum) * seed + c) % m);
     }
 }

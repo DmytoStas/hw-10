@@ -2,6 +2,7 @@ package stream.homework.task3;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -17,7 +18,7 @@ public class NumberFinder {
                 .map(element -> (List<String>) new ArrayList<>(List.of(element
                         .replaceAll("\\D+", " ").split(" "))))
                 .flatMap(Collection::stream)
-                .sorted()
+                .sorted(Comparator.comparingInt(Integer::parseInt))
                 .collect(Collectors.joining(", ", "\"", "\""));
 
         System.out.println(numbersLine);
